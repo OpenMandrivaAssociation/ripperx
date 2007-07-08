@@ -1,6 +1,6 @@
 %define	name	ripperx
 %define	oname	ripperX
-%define	version	2.6.7
+%define	version	2.7.0
 %define	release	%mkrel 1
 
 Summary:	GTK program to rip CD audio and encode mp3s
@@ -11,6 +11,7 @@ License:	GPL
 Group:		Sound
 Requires:	cdparanoia
 BuildRequires:	gtk+-devel >= 1.2
+BuildRequires:	desktop-file-utils
 Source0:	%{oname}-%{version}.tar.bz2
 Source11:	%{oname}-48.png
 Source12:	%{oname}-32.png
@@ -39,15 +40,10 @@ rm -rf $RPM_BUILD_ROOT
 %makeinstall
 
 install -m644 src/xpms/%{oname}-icon.xpm -D $RPM_BUILD_ROOT%{_datadir}/pixmaps/%{oname}-icon.xpm
-install -m644 %{oname}.desktop -D $RPM_BUILD_ROOT%{_datadir}/gnome/apps/Multimedia/%{oname}.desktop
-
-# Menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat >$RPM_BUILD_ROOT%{_menudir}/%{name} <<EOF
-?package(%{name}): command="%{_bindir}/%{oname}" needs="X11" \
-icon="%{oname}.png" section="Multimedia/Sound" \
-title="%{oname}" longtitle="RipperX can rip audio cd's and encode them to mp3's"
-EOF
+desktop-file-install --vendor="" \
+	--dir=$RPM_BUILD_ROOT%{_datadir}/applications/ \
+	--add-category="AudioVideo;Audio;" \
+	%{oname}.desktop
 
 #icon
 install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT/%{_liconsdir}/%{oname}.png
@@ -67,9 +63,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc FAQ README README.plugin README.plugin_spec_v0.1 README.plugin_tester TODO CHANGES COPYING BUGS
 %{_bindir}/%{oname}*
-%{_menudir}/%{name}
 %{_iconsdir}/%{oname}.png
 %{_liconsdir}/%{oname}.png
 %{_miconsdir}/%{oname}.png
 %{_datadir}/pixmaps/%{oname}-icon.xpm
-%{_datadir}/gnome/apps/Multimedia/%{oname}.desktop
+%{_datadir}/applications/%{oname}.desktop
