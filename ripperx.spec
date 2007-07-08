@@ -17,6 +17,8 @@ Source0:	%{oname}-%{version}.tar.bz2
 Source11:	%{oname}-48.png
 Source12:	%{oname}-32.png
 Source13:	%{oname}-16.png
+Patch1:		%{oname}-2.7.0-Makefile.patch
+Patch2:		%{oname}-2.7.0-cdplay-command.patch
 URL:		http://sourceforge.net/projects/ripperx/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides:	%{oname}
@@ -30,6 +32,8 @@ ISO encoder.  Also has support for CDDB and ID3 tags.
 
 %prep
 %setup -q -n %{oname}-%{version}
+%patch1 -p1
+%patch2 -p2
 
 %build
 %configure
