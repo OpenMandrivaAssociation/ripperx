@@ -11,6 +11,7 @@ License:	GPL
 Group:		Sound
 Requires:	cdparanoia
 BuildRequires:	gtk+-devel >= 1.2
+BuildRequires:	libid3-devel
 BuildRequires:	desktop-file-utils
 Source0:	%{oname}-%{version}.tar.bz2
 Source11:	%{oname}-48.png
