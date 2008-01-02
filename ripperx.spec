@@ -20,6 +20,7 @@ Source13:	%{oname}-16.png
 Patch1:		%{oname}-2.7.0-Makefile.patch
 Patch2:		%{oname}-2.7.0-cdplay-command.patch
 URL:		http://sourceforge.net/projects/ripperx/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides:	%{oname}
 Obsoletes:	%{oname}
 
