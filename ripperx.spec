@@ -1,7 +1,7 @@
 %define	name	ripperx
 %define	oname	ripperX
 %define	version	2.7.0
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 
 Summary:	GTK program to rip CD audio and encode mp3s
 Name:		%{name}
