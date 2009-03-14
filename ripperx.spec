@@ -1,7 +1,7 @@
 %define	name	ripperx
 %define	oname	ripperX
 %define	version	2.7.0
-%define	release	%mkrel 2
+%define	release	%mkrel 3
 
 Summary:	GTK program to rip CD audio and encode mp3s
 Name:		%{name}
@@ -17,8 +17,9 @@ Source0:	%{oname}-%{version}.tar.bz2
 Source11:	%{oname}-48.png
 Source12:	%{oname}-32.png
 Source13:	%{oname}-16.png
-Patch1:		%{oname}-2.7.0-Makefile.patch
 Patch2:		%{oname}-2.7.0-cdplay-command.patch
+Patch3:		ripperX-2.7.0-fix-format-errors.patch
+Patch4:		ripperX-2.7.0-fix-linking.patch
 URL:		http://sourceforge.net/projects/ripperx/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides:	%{oname}
@@ -32,8 +33,11 @@ ISO encoder.  Also has support for CDDB and ID3 tags.
 
 %prep
 %setup -q -n %{oname}-%{version}
-%patch1 -p1
-%patch2 -p2
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+
+perl -pi -e 's/MultipleArgs=false\n//' ripperX.desktop
 
 %build
 %configure
@@ -41,19 +45,19 @@ ISO encoder.  Also has support for CDDB and ID3 tags.
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall
 
-install -m644 src/xpms/%{oname}-icon.xpm -D $RPM_BUILD_ROOT%{_datadir}/pixmaps/%{oname}-icon.xpm
+install -m644 src/xpms/%{oname}-icon.xpm -D %{buildroot}%{_datadir}/pixmaps/%{oname}-icon.xpm
 desktop-file-install --vendor="" \
-	--dir=$RPM_BUILD_ROOT%{_datadir}/applications/ \
+	--dir=%{buildroot}%{_datadir}/applications/ \
 	--add-category="AudioVideo;Audio;" \
 	%{oname}.desktop
 
 #icon
-install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT/%{_liconsdir}/%{oname}.png
-install -m644 %{SOURCE12} -D $RPM_BUILD_ROOT/%{_iconsdir}/%{oname}.png
-install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT/%{_miconsdir}/%{oname}.png
+install -m644 %{SOURCE11} -D %{buildroot}/%{_liconsdir}/%{oname}.png
+install -m644 %{SOURCE12} -D %{buildroot}/%{_iconsdir}/%{oname}.png
+install -m644 %{SOURCE13} -D %{buildroot}/%{_miconsdir}/%{oname}.png
 
 %if %mdkversion < 200900
 %post
@@ -66,7 +70,7 @@ install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT/%{_miconsdir}/%{oname}.png
 %endif
  
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
