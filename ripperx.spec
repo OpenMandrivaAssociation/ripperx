@@ -1,13 +1,14 @@
 %define	name	ripperx
 %define	oname	ripperX
-%define	version	2.7.0
-%define	release	%mkrel 4
+%define	version	2.7.2
+%define	release	%mkrel 1
+%define	locale_dir	/usr/share/locale
 
 Summary:	GTK program to rip CD audio and encode mp3s
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-License:	GPL
+License:	GPLv2
 Group:		Sound
 Requires:	cdparanoia
 BuildRequires:	gtk+-devel >= 1.2
@@ -17,9 +18,7 @@ Source0:	%{oname}-%{version}.tar.bz2
 Source11:	%{oname}-48.png
 Source12:	%{oname}-32.png
 Source13:	%{oname}-16.png
-Patch2:		%{oname}-2.7.0-cdplay-command.patch
 Patch3:		ripperX-2.7.0-fix-format-errors.patch
-Patch4:		ripperX-2.7.0-fix-linking.patch
 URL:		http://sourceforge.net/projects/ripperx/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides:	%{oname}
@@ -33,14 +32,12 @@ ISO encoder.  Also has support for CDDB and ID3 tags.
 
 %prep
 %setup -q -n %{oname}-%{version}
-%patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 perl -pi -e 's/MultipleArgs=false\n//' ripperX.desktop
 
 %build
-%configure
+%configure2_5x
 %make
 
 
@@ -81,3 +78,8 @@ rm -rf %{buildroot}
 %{_miconsdir}/%{oname}.png
 %{_datadir}/pixmaps/%{oname}-icon.xpm
 %{_datadir}/applications/%{oname}.desktop
+%{_libdir}/pkgconfig/ripperX.pc
+%{locale_dir}/en_GB/LC_MESSAGES/ripperX.mo
+%{locale_dir}/es/LC_MESSAGES/ripperX.mo
+%{locale_dir}/it/LC_MESSAGES/ripperX.mo
+%{_mandir}/man1/ripperX.1.lzma
