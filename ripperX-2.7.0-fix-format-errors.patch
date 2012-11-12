@@ -1,0 +1,12 @@
+diff -Naur ripperX-2.7.0/src/cddbp.c ripperX-2.7.0-fix-format-errors/src/cddbp.c
+--- ripperX-2.7.0/src/cddbp.c	2006-03-11 23:55:10.000000000 +0100
++++ ripperX-2.7.0-fix-format-errors/src/cddbp.c	2009-03-14 17:58:20.000000000 +0100
+@@ -92,7 +92,7 @@
+ 	printf( "=> %s\n", buffer );
+ #endif
+ 
+-	fprintf( socket, buffer );
++	fprintf( socket, "%s", buffer );
+ 	free( buffer );
+ 
+ 	tmp = buffer = get_string_piece( socket, '\n' );
