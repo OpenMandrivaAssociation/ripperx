@@ -1,0 +1,23 @@
+diff -Naur ripperX-2.7.0/src/config_rw.c ripperX-2.7.0-cdplay-command/src/config_rw.c
+--- ripperX-2.7.0/src/config_rw.c	2005-06-02 20:22:25.000000000 +0200
++++ ripperX-2.7.0-cdplay-command/src/config_rw.c	2009-03-14 17:56:17.000000000 +0100
+@@ -84,15 +84,15 @@
+ 	{ "Encoder::Plugin", config.encoder.plugin,
+ 		STRING, 0, "ripperX_plugin-lame" },
+ 	{ "CdPlayer::Play_command", config.cd_player.play_command,
+-		STRING, 0, "cdplay play %" },
++		STRING, 0, "cdplay %" },
+ 	{ "CdPlayer::Stop_command", config.cd_player.stop_command,
+-		STRING, 0, "cdplay stop" },
++		STRING, 0, "cdstop" },
+ 	{ "WavPlayer::Command", config.wav_player.command,
+-		STRING, 0, "splay %" },
++		STRING, 0, "play %" },
+ 	{ "Mp3Player::Command", config.mp3_player.command,
+ 		STRING, 0, "mpg123 %" },
+ 	{ "CDDBConfig::Server", config.cddb_config.server,
+-		STRING, 0, "www.freedb.org/cgi-bin/cddb.cgi" },
++		STRING, 0, "freedb.freedb.org/~cddb/cddb.cgi" },
+ 	{ "CDDBConfig::Port", &config.cddb_config.port,
+ 		INT, 0, "80" },
+ 	{ "CDDBConfig::UseHttp", &config.cddb_config.use_http,
