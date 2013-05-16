@@ -1,17 +1,14 @@
-%define	name	ripperx
 %define	oname	ripperX
-%define	version	2.7.0
-%define release 	5
 
 Summary:	GTK program to rip CD audio and encode mp3s
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		ripperx
+Version:	2.7.0
+Release:	5
 License:	GPL
 Group:		Sound
 Requires:	cdparanoia
 BuildRequires:	gtk+-devel >= 1.2
-BuildRequires:	pkgconfig(id3tag)
+BuildRequires:	libid3-devel
 BuildRequires:	desktop-file-utils
 Source0:	%{oname}-%{version}.tar.bz2
 Source11:	%{oname}-48.png
@@ -44,7 +41,6 @@ perl -pi -e 's/MultipleArgs=false\n//' ripperX.desktop
 
 
 %install
-rm -rf %{buildroot}
 %makeinstall
 
 install -m644 src/xpms/%{oname}-icon.xpm -D %{buildroot}%{_datadir}/pixmaps/%{oname}-icon.xpm
@@ -58,21 +54,9 @@ install -m644 %{SOURCE11} -D %{buildroot}/%{_liconsdir}/%{oname}.png
 install -m644 %{SOURCE12} -D %{buildroot}/%{_iconsdir}/%{oname}.png
 install -m644 %{SOURCE13} -D %{buildroot}/%{_miconsdir}/%{oname}.png
 
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%endif
- 
 %clean
-rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %doc FAQ README README.plugin README.plugin_spec_v0.1 README.plugin_tester TODO CHANGES COPYING BUGS
 %{_bindir}/%{oname}*
 %{_iconsdir}/%{oname}.png
