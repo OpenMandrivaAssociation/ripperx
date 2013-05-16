@@ -1,7 +1,7 @@
 %define	name	ripperx
 %define	oname	ripperX
 %define	version	2.7.0
-%define	release	%mkrel 4
+%define release 	5
 
 Summary:	GTK program to rip CD audio and encode mp3s
 Name:		%{name}
@@ -21,7 +21,6 @@ Patch2:		%{oname}-2.7.0-cdplay-command.patch
 Patch3:		ripperX-2.7.0-fix-format-errors.patch
 Patch4:		ripperX-2.7.0-fix-linking.patch
 URL:		http://sourceforge.net/projects/ripperx/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides:	%{oname}
 Obsoletes:	%{oname}
 
