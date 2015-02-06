@@ -3,7 +3,7 @@
 Summary:	GTK program to rip CD audio and encode mp3s
 Name:		ripperx
 Version:	2.7.0
-Release:	5
+Release:	6
 License:	GPL
 Group:		Sound
 Requires:	cdparanoia
