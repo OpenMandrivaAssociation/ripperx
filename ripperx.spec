@@ -17,7 +17,7 @@ Source13:	%{oname}-16.png
 Patch2:		%{oname}-2.7.0-cdplay-command.patch
 Patch3:		ripperX-2.7.0-fix-format-errors.patch
 Patch4:		ripperX-2.7.0-fix-linking.patch
-URL:		http://sourceforge.net/projects/ripperx/
+URL:		https://sourceforge.net/projects/ripperx/
 Provides:	%{oname}
 Obsoletes:	%{oname}
 
