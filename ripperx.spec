@@ -7,6 +7,11 @@ Release:	6
 License:	GPL
 Group:		Sound
 Requires:	cdparanoia
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gtk+-devel >= 1.2
 BuildRequires:	libid3-devel
 BuildRequires:	desktop-file-utils
